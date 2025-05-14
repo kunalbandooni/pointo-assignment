@@ -1,5 +1,6 @@
 package com.pointo.task.management.dto;
 
+import com.pointo.task.management.entity.Task.Priority;
 import com.pointo.task.management.entity.Task.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,5 +15,6 @@ public class TaskRequestDTO {
     private String description;
     @NotNull
     private Status status;
+    private Priority priority;
     private Long dueDate;
 }

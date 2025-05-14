@@ -1,57 +1,132 @@
 import { useState } from "react";
+import {
+  MdEdit,
+  MdOutlineKeyboardDoubleArrowRight,
+  MdOutlineKeyboardDoubleArrowLeft,
+  MdDelete,
+} from "react-icons/md";
 import EditTaskForm from "./EditTaskForm";
 import ConfirmDialog from "./ConfirmDialog";
 import "../styles/Task.css";
 
-const Task = ({ id, title, description, dueDate, createdAt, updatedAt, status, onDelete, onMove, onSuccess }) => {
+const Task = ({
+  id,
+  title,
+  description,
+  dueDate,
+  createdAt,
+  updatedAt,
+  status,
+  priority,
+  onDelete,
+  onMove,
+  onSuccess,
+}) => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   const statusOrder = ["TO_DO", "IN_PROGRESS", "DONE"];
   const currentIndex = statusOrder.indexOf(status);
 
-  const taskData = { id, title, description, dueDate, createdAt, updatedAt, status };
+  const taskData = {
+    id,
+    title,
+    description,
+    dueDate,
+    createdAt,
+    updatedAt,
+    status,
+    priority,
+  };
 
   const handleDelete = () => {
     onDelete();
     setShowDeleteConfirm(false);
   };
 
+  const handleCardClick = (e) => {
+    if (e.target.closest("button")) return;
+    setShowDetails(true);
+  };
+
   return (
     <>
-      <div className="task-card">
-        <div className="task-card-header">
-          <h3>{title}</h3>
-          <div className="task-card-actions">
-            {currentIndex > 0 && (
-              <button
-                className="move-btn"
-                title="Move to previous column"
-                onClick={() => onMove(id, statusOrder[currentIndex - 1])}
-              >
-                🔙
-              </button>
-            )}
-            {currentIndex < statusOrder.length - 1 && (
-              <button
-                className="move-btn"
-                title="Move to next column"
-                onClick={() => onMove(id, statusOrder[currentIndex + 1])}
-              >
-                🔜
-              </button>
-            )}
-            <button className="edit-btn" onClick={() => setShowEdit(true)}>✏️</button>
-            <button className="delete-btn" onClick={() => setShowDeleteConfirm(true)}>🗑️</button>
+      <div
+        className="task-card hoverable"
+        onClick={handleCardClick}
+        title="Click to view details"
+      >
+        <div className="task-card-actions">
+          {currentIndex > 0 && (
+            <button
+              className="move-btn hoverable"
+              title="Move to previous column"
+              onClick={() => onMove(id, statusOrder[currentIndex - 1])}
+            >
+              <MdOutlineKeyboardDoubleArrowLeft />
+            </button>
+          )}
+          {currentIndex < statusOrder.length - 1 && (
+            <button
+              className="move-btn hoverable"
+              title="Move to next column"
+              onClick={() => onMove(id, statusOrder[currentIndex + 1])}
+            >
+              <MdOutlineKeyboardDoubleArrowRight />
+            </button>
+          )}
+          <button
+            className="edit-btn hoverable"
+            title="Edit task"
+            onClick={() => setShowEdit(true)}
+          >
+            <MdEdit />
+          </button>
+          <button
+            className="delete-btn hoverable"
+            title="Delete task"
+            onClick={() => setShowDeleteConfirm(true)}
+          >
+            <MdDelete />
+          </button>
+        </div>
+
+        <div className="task-title-row">
+          <h2 className="task-title">{title}</h2>
+          <div className={`priority-badge ${priority?.toLowerCase()}`}>
+            {priority}
           </div>
         </div>
-        <p title={description || "No Description"}>
-          {description || <span className="no-description">No Description</span>}
+
+        <p className="task-description-preview">
+          {description ? description.slice(0, 100) + (description.length > 100 ? "..." : "") : <span className="no-description">No Description</span>}
         </p>
-        <small><strong>Due:</strong> {new Date(dueDate).toLocaleDateString()}</small><br />
-        <small><strong>Created:</strong> {new Date(createdAt).toLocaleDateString()}</small><br />
-        <small><strong>Updated:</strong> {new Date(updatedAt).toLocaleDateString()}</small>
+
+        <div className="task-due">
+          <strong>Due:</strong> {new Date(dueDate).toLocaleDateString()}
+        </div>
+
+        <div className="task-meta">
+          <small>
+            <strong>Created:</strong> {new Date(createdAt).toLocaleDateString()}
+          </small>
+          <small>
+            <strong>Updated:</strong> {new Date(updatedAt).toLocaleDateString()}
+          </small>
+        </div>
       </div>
+
+      {showDetails && (
+        <EditTaskForm
+          task={taskData}
+          onClose={() => setShowDetails(false)}
+          onSuccess={() => {
+            setShowDetails(false);
+            onSuccess();
+          }}
+        />
+      )}
 
       {showEdit && (
         <EditTaskForm

@@ -1,13 +1,13 @@
-const API_URL = "http://localhost:8080/task";
+import { API_URL, TASK_SEGMENT } from "../constants/constants";
 
 export const fetchAllTasks = async () => {
-  const res = await fetch(API_URL);
+  const res = await fetch(`${API_URL}/${TASK_SEGMENT}`);
   if (!res.ok) throw new Error("Failed to fetch tasks");
   return res.json();
 };
 
 export const createTask = async (task) => {
-  const res = await fetch(API_URL, {
+  const res = await fetch(`${API_URL}/${TASK_SEGMENT}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(task),
@@ -18,7 +18,7 @@ export const createTask = async (task) => {
 };
 
 export const deleteTask = async (id) => {
-  const response = await fetch(`${API_URL}/${id}`, {
+  const response = await fetch(`${API_URL}/${TASK_SEGMENT}/${id}`, {
     method: "DELETE",
   });
 
@@ -28,7 +28,7 @@ export const deleteTask = async (id) => {
 };
 
 export const updateTaskStatus = async (id, status) => {
-  const res = await fetch(`${API_URL}/${id}?status=${status}`, {
+  const res = await fetch(`${API_URL}/${TASK_SEGMENT}/${id}?status=${status}`, {
     method: 'PATCH',
   });
 
@@ -38,7 +38,7 @@ export const updateTaskStatus = async (id, status) => {
 };
 
 export const updateTask = async (id, updatedTask) => {
-  const response = await fetch(`${API_URL}/${id}`, {
+  const response = await fetch(`${API_URL}/${TASK_SEGMENT}/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

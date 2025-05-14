@@ -1,40 +1,29 @@
 .task-card {
-    width: 80%;
-    min-width: 300px;
-    max-width: 300px;
+    width: 90%;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
     overflow: hidden;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     position: relative;
-}
-
-.task-card p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 8px 0;
-    color: #333;
-}
-  
-.task-card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
 }
   
 .task-card-actions {
     display: flex;
+    justify-content: flex-end;
     gap: 0.3rem;
+    margin-bottom: 0.3rem;
 }
   
 .task-card-actions button {
     background: transparent;
     border: none;
-    color: white;
+    color: #444;
     font-size: 1rem;
     cursor: pointer;
     padding: 0.2rem;
@@ -51,8 +40,70 @@
 .delete-btn:hover {
     color: #ff6b6b;
 }
-
+  
+.task-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.task-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+  
+.task-card p {
+    margin: 0.3rem 0;
+    color: #333;
+}
+  
 .no-description {
     color: grey;
     font-style: italic;
 }
+  
+.task-due {
+    font-size: 0.85rem;
+    color: #555;
+}
+  
+.task-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #777;
+}
+  
+.priority-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+}
+  
+.low {
+    background-color: #4caf50;
+}
+  
+.medium {
+    background-color: #ff9800;
+}
+  
+.high {
+    background-color: #f44336;
+}
+
+.task-card-actions button {
+    background: transparent;
+    border: none;
+    color: #444;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}  

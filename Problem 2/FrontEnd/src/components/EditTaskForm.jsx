@@ -7,6 +7,7 @@ const EditTaskForm = ({ task, onClose, onSuccess }) => {
     title: task.title,
     description: task.description,
     status: task.status,
+    priority: task.priority,
     dueDate: new Date(task.dueDate).toISOString().split("T")[0],
   });
 
@@ -41,9 +42,14 @@ const EditTaskForm = ({ task, onClose, onSuccess }) => {
           placeholder="Description"
         />
         <select name="status" value={form.status} onChange={handleChange}>
-          <option value="TO_DO">TO_DO</option>
-          <option value="IN_PROGRESS">IN_PROGRESS</option>
+          <option value="TO_DO">TO DO</option>
+          <option value="IN_PROGRESS">IN PROGRESS</option>
           <option value="DONE">DONE</option>
+        </select>
+        <select name="priority" value={form.priority} onChange={handleChange}>
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
         </select>
         <input
           name="dueDate"

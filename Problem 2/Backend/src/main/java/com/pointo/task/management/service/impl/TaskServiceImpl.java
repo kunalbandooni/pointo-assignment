@@ -31,6 +31,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
         task.setTitle(dto.getTitle());
         task.setDescription(dto.getDescription());
+        task.setPriority(dto.getPriority() == null ? Task.Priority.LOW : dto.getPriority());
         task.setStatus(dto.getStatus());
         task.setDueDate(dto.getDueDate());
         return taskRepository.save(task);
@@ -44,6 +45,7 @@ public class TaskServiceImpl implements TaskService {
         task.setTitle(dto.getTitle());
         task.setDescription(dto.getDescription());
         task.setStatus(dto.getStatus());
+        task.setPriority(dto.getPriority() == null ? task.getPriority() : dto.getPriority());
         task.setDueDate(dto.getDueDate());
 
         return taskRepository.save(task);

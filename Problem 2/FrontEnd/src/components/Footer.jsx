@@ -7,11 +7,16 @@ const Footer = () => {
         background: '#1f1f1f',
         padding: '1rem',
         textAlign: 'center',
-        height: '10%',
-        flexShrink: 0
+        flexShrink: 0,
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        color: 'whitesmoke'
       }}
     >
-      <p style={{color: 'whitesmoke'}}>© All Copyrights Reserved 2025</p>
+      <p style={{ margin: 0 }}>© All Copyrights Reserved 2025</p>
     </footer>
   );
 };

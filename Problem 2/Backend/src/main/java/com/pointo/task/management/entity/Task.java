@@ -24,6 +24,9 @@ public class Task {
     private String description;
 
     @Enumerated(EnumType.STRING)
+    private Priority priority;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     private Long dueDate;
@@ -50,5 +53,11 @@ public class Task {
         TO_DO,
         IN_PROGRESS,
         DONE
+    }
+
+    public enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
     }
 }

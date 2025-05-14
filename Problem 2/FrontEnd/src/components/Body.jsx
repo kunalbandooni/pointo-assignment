@@ -8,6 +8,7 @@ const Body = () => {
   const [showForm, setShowForm] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
+  const [priorityFilter, setPriorityFilter] = useState("ALL");
 
   const loadTasks = async () => {
     try {
@@ -53,12 +54,27 @@ const Body = () => {
     }
   };
 
+  const filteredTasks = tasks.filter(task =>
+    priorityFilter === "ALL" ? true : task.priority === priorityFilter
+  );
+
   return (
     <div className="body-wrapper">
       <div className="body-header">
         <button className="add-task-btn" onClick={() => setShowForm(true)}>
           + Add New Task
         </button>
+
+        <select
+          className="priority-filter"
+          value={priorityFilter}
+          onChange={(e) => setPriorityFilter(e.target.value)}
+        >
+          <option value="ALL">All Priorities</option>
+          <option value="HIGH">High</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="LOW">Low</option>
+        </select>
       </div>
 
       {successMessage && (
@@ -66,22 +82,25 @@ const Body = () => {
       )}
 
       <div className="body-container">
-        <TaskColumn title="TODO" 
-          tasks={tasks.filter(task => task.status === "TO_DO")} 
-          onDelete={handleDelete} 
-          onMove={handleMove} 
-          onSuccess={loadTasks}
-        />
-        <TaskColumn title="IN PROGRESS" 
-          tasks={tasks.filter(task => task.status === "IN_PROGRESS")} 
-          onDelete={handleDelete} 
+        <TaskColumn
+          title="TODO"
+          tasks={filteredTasks.filter(task => task.status === "TO_DO")}
+          onDelete={handleDelete}
           onMove={handleMove}
           onSuccess={loadTasks}
         />
-        <TaskColumn title="DONE" 
-          tasks={tasks.filter(task => task.status === "DONE")} 
+        <TaskColumn
+          title="IN PROGRESS"
+          tasks={filteredTasks.filter(task => task.status === "IN_PROGRESS")}
           onDelete={handleDelete}
-          onMove={handleMove} 
+          onMove={handleMove}
+          onSuccess={loadTasks}
+        />
+        <TaskColumn
+          title="DONE"
+          tasks={filteredTasks.filter(task => task.status === "DONE")}
+          onDelete={handleDelete}
+          onMove={handleMove}
           onSuccess={loadTasks}
         />
       </div>
