@@ -28,9 +28,12 @@
 }
 
 .modal input,
-.modal textarea {
-  width: 90%;
+.modal textarea,
+.modal select {
+  width: 100%;
+  box-sizing: border-box;
   padding: 0.6rem 0.8rem;
+  margin-top: 0.4rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -40,9 +43,20 @@
 }
 
 .modal input:focus,
-.modal textarea:focus {
+.modal textarea:focus,
+.modal select:focus {
   border-color: #007bff;
   outline: none;
+}
+
+.modal label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #333;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .modal textarea {

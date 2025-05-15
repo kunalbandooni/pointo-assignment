@@ -6,6 +6,7 @@ const AddTaskForm = ({ onClose, onSuccess }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState("LOW");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ const AddTaskForm = ({ onClose, onSuccess }) => {
       title,
       description,
       status: "TO_DO",
+      priority,
       dueDate: new Date(dueDate).getTime()
     };
 
@@ -43,12 +45,26 @@ const AddTaskForm = ({ onClose, onSuccess }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <input
-            type="date"
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-            required
-          />
+
+          <label>
+            Priority
+            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+              <option value="LOW">Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+            </select>
+          </label>
+
+          <label>
+            Due Date
+            <input
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              required
+            />
+          </label>
+
           <div className="form-actions">
             <button type="submit">Add Task</button>
             <button type="button" onClick={onClose} className="cancel-btn">Cancel</button>

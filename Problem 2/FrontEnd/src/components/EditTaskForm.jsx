@@ -46,17 +46,23 @@ const EditTaskForm = ({ task, onClose, onSuccess }) => {
           <option value="IN_PROGRESS">IN PROGRESS</option>
           <option value="DONE">DONE</option>
         </select>
-        <select name="priority" value={form.priority} onChange={handleChange}>
-          <option value="LOW">Low</option>
-          <option value="MEDIUM">Medium</option>
-          <option value="HIGH">High</option>
-        </select>
-        <input
-          name="dueDate"
-          type="date"
-          value={form.dueDate}
-          onChange={handleChange}
-        />
+        <label>
+          Priority
+          <select name="priority" value={form.priority} onChange={handleChange}>
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+          </select>
+        </label>
+        <label>
+          Due Date
+          <input
+            name="dueDate"
+            type="date"
+            value={form.dueDate}
+            onChange={handleChange}
+          />
+        </label>
         <div className="modal-actions">
           <button onClick={handleUpdate}>Update</button>
           <button onClick={onClose}>Cancel</button>

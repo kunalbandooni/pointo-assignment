@@ -7,6 +7,7 @@ import {
 } from "react-icons/md";
 import EditTaskForm from "./EditTaskForm";
 import ConfirmDialog from "./ConfirmDialog";
+import { DESCRIPTION_SIZE } from "../constants/constants";
 import "../styles/Task.css";
 
 const Task = ({
@@ -100,7 +101,7 @@ const Task = ({
         </div>
 
         <p className="task-description-preview">
-          {description ? description.slice(0, 100) + (description.length > 100 ? "..." : "") : <span className="no-description">No Description</span>}
+          {description ? description.slice(0, DESCRIPTION_SIZE) + (description.length > DESCRIPTION_SIZE ? "..." : "") : <span className="no-description">No Description</span>}
         </p>
 
         <div className="task-due">

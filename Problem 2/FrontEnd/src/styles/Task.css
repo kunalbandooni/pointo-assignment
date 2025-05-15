@@ -62,7 +62,11 @@
     color: grey;
     font-style: italic;
 }
-  
+
+.task-description-preview {
+    font-size: small;
+}
+
 .task-due {
     font-size: 0.85rem;
     color: #555;
