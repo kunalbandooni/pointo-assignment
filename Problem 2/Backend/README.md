@@ -3,7 +3,7 @@
 This is a Spring Boot-based backend service for a Task Management System. It uses **Gradle** as the build tool, **PostgreSQL (AWS RDS)** as the database, and is containerized using **Docker**.
 
 <p>
-    <img src="evidence.png" alt="Evidence">
+    <img src="Evidence.png" alt="Evidence">
 </p>
 
 ---
