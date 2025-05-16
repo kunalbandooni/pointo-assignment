@@ -31,12 +31,14 @@ customers. Specifically, you will need to calculate the following:
 
 ## 🚀 How to Run
 
+Use cmd to run the following code:
+
 1. **Compile the code**
-   ```bash
-   g++ .\program.cpp
-   ```
+ ```
+javac -d out src\com\railway\model\*.java src\com\railway\service\*.java src\com\railway\util\*.java src\com\railway\Main.java
+```
 
 2. **Run the executable file**
-    ```bash
-   .\a.exe
-    ```
+```
+java -cp out com.railway.Main
+```
