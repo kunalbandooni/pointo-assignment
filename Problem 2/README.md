@@ -6,7 +6,7 @@
 
 <br />
 
-<p align="center">
+<p align="center" style="background-color: #f0f0f0; padding: 1rem;">
   <img src="Task_management_system_architecture.png" alt="System Architecture" width="600"/>
 </p>
 
@@ -94,9 +94,10 @@ docker-compose up --build
 ```
 
 <h3>📍 App URLs</h3>
-<li>Frontend: <a href="http://localhost:3000">http://localhost:3000</a></li>
-
-<li>Backend API: <a href="http://localhost:8080">http://localhost:8080</a></li>
+<ul>
+    <li>Frontend: <a href="http://localhost:3000">http://localhost:3000</a></li>
+    <li>Backend API: <a href="http://localhost:8080">http://localhost:8080</a></li>
+</ul>
 
 <h2>🧩 UI Overview</h2> 
 <ul> 
@@ -115,9 +116,12 @@ docker-compose up --build
 </ul>
 
 <h2>🛠️ Developer Notes</h2>
-<li>Build Tool: Gradle was used for backend for faster builds and simplified dependency management.</li>
-<li>Deployment: Both frontend and backend are containerized for easy setup using Docker Compose.</li>
-<li>Design Consideration: Used soft delete to enable future archival or recovery features in version 2.</li>
+<ul>
+    <li>Build Tool: Gradle was used for backend for faster builds and simplified dependency management.</li>
+    <li>Deployment: Both frontend and backend are containerized for easy setup using Docker Compose.</li>
+    <li>Design Consideration: Used soft delete to enable future archival or recovery features in version 2.</li>
+    <li>Another feature for v2: Introducing multiple task boards.</li>
+</ul>
 
 [//]: # (<h2>🤝 Contact</h2>)
 [//]: # (<p>Developed by <strong>[Kunal Bandooni]</strong> | <em>Software Engineer</em></p>)
